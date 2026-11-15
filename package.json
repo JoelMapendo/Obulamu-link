@@ -1,0 +1,31 @@
+{
+  "name": "obulamu-link",
+  "version": "1.0.0",
+  "description": "Android and USSD-Based Appointment Scheduling & Medication Reminder System for Kampala Public Health Clinics",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "backend:dev": "npm run dev --prefix backend",
+    "backend:seed": "npm run prisma:push --prefix backend && npm run prisma:seed --prefix backend",
+    "frontend:dev": "npm run dev --prefix frontend",
+    "docker:up": "docker-compose up --build",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": [
+    "ussd",
+    "africas-talking",
+    "kampala-health-clinics",
+    "bugema-university",
+    "appointment-scheduling",
+    "medication-reminders",
+    "luganda",
+    "healthcare",
+    "react",
+    "nodejs",
+    "typescript"
+  ],
+  "author": "Obulamu-Link Engineering Team",
+  "license": "MIT",
+  "dependencies": {
+    "all": "^0.0.0"
+  }
+}

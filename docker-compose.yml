@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: obulamu_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: obulamu_user
+      POSTGRES_PASSWORD: obulamu_password
+      POSTGRES_DB: obulamu_link
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: obulamu_backend
+    restart: always
+    ports:
+      - "5001:5001"
+    environment:
+      PORT: 5001
+      NODE_ENV: production
+      DATABASE_URL: "postgresql://obulamu_user:obulamu_password@postgres:5432/obulamu_link?schema=public"
+      JWT_SECRET: "super-secret-obulamu-link-jwt-key-2026"
+      AT_API_KEY: "sandbox"
+      AT_USERNAME: "sandbox"
+      AT_SENDER_ID: "OBULAMU"
+      USSD_CODE: "*284#"
+      CORS_ORIGIN: "http://localhost:5173"
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: obulamu_frontend
+    restart: always
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+
