@@ -222,6 +222,7 @@ Open `http://localhost:5173` in your browser.
 | **Clinician (Doctor)** | Dr. Sarah Namubiru | `+256772100100` | `Password123!` |
 | **Clinician (Doctor)** | Dr. David Mukasa | `+256772200200` | `Password123!` |
 | **Patient (Luganda)** | Mary Nakato | `+256701334455` | `Password123!` |
+| **Patient (Swahili)** | Juma Bakari | `+256752889900` | `Password123!` |
 | **Patient (English)** | John Baptist Kato | `+256782556677` | `Password123!` |
 
 ---

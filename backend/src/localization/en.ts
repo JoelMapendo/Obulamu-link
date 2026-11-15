@@ -1,5 +1,5 @@
 export const en = {
-  welcome: "CON Welcome to Obulamu-Link Clinic Portal\n1. Book Appointment\n2. View Scheduled Visit\n3. Reschedule / Cancel\n4. Change Language (English/Luganda)",
+  welcome: "CON Welcome to Obulamu-Link Clinic Portal\n1. Book Appointment\n2. View Scheduled Visit\n3. Reschedule / Cancel\n4. Change Language (English/Luganda/Kiswahili)",
   selectDepartment: "CON Select Clinic Department:\n1. General Outpatient (OPD)\n2. Chronic Care / ART Clinic\n3. Antenatal Care (MCH)",
   selectClinic: "CON Select Health Facility:\n",
   selectDate: "CON Select Preferred Date:\n",
@@ -12,8 +12,8 @@ export const en = {
   cancelSelect: "CON Select Appointment to Cancel:\n{list}",
   cancelConfirmed: "END Appointment {id} has been cancelled successfully.",
   cancelFailed: "END Failed to cancel appointment. Please contact clinic reception.",
-  selectLanguage: "CON Select Language / Londa Olulimi:\n1. English\n2. Oluganda",
-  languageUpdated: "END Language updated to English. Webale nnyo.",
+  selectLanguage: "CON Select Language / Londa Olulimi / Chagua Lugha:\n1. English\n2. Oluganda\n3. Kiswahili",
+  languageUpdated: "END Language updated to English. Welcome.",
   invalidInput: "CON Invalid selection. Please choose an option from the list:\n",
   sessionEnded: "END Thank you for using Obulamu-Link Clinic Portal. Stay healthy!",
   

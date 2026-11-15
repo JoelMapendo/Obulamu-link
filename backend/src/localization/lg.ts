@@ -1,5 +1,5 @@
 export const lg = {
-  welcome: "CON Tukusanyukidde ku Obulamu-Link\n1. Siba Olunaku lw'Okulaba Omusawo\n2. Kebera Enteekateeka Yo\n3. Kyusa oba Sazaamu Enteekateeka\n4. Kyusa Olulimi (English/Luganda)",
+  welcome: "CON Tukusanyukidde ku Obulamu-Link\n1. Siba Olunaku lw'Okulaba Omusawo\n2. Kebera Enteekateeka Yo\n3. Kyusa oba Sazaamu Enteekateeka\n4. Kyusa Olulimi (English/Luganda/Kiswahili)",
   selectDepartment: "CON Londa Ekitongole ky'Eddwaliro:\n1. Eky'Abalwadde Ababulijjo (OPD)\n2. Eby'Endwadde Ez'olubeerera / ART\n3. Eby'Abakyala Ab'embuto (Antenatal)",
   selectClinic: "CON Londa Eddwaliro ly'Oyagala:\n",
   selectDate: "CON Londa Olunaku lw'Oyagala:\n",
@@ -12,7 +12,7 @@ export const lg = {
   cancelSelect: "CON Londa enteekateeka gy'oyagala okusazaamu:\n{list}",
   cancelConfirmed: "END Enteekateeka {id} esaziddwamu mu butongole.",
   cancelFailed: "END Enteekateeka tesobose kusazibwamu. Kuba ku ddwaliro ku mulyango.",
-  selectLanguage: "CON Londa Olulimi / Select Language:\n1. English\n2. Oluganda",
+  selectLanguage: "CON Londa Olulimi / Select Language / Chagua Lugha:\n1. English\n2. Oluganda\n3. Kiswahili",
   languageUpdated: "END Olulimi lukyusiddwa okudda mu Luganda. Webale nnyo.",
   invalidInput: "CON Ennamba gy'oyingizza ssi ntuufu. Londa ekimu ku bino:\n",
   sessionEnded: "END Webale nnyo okukozesa Obulamu-Link. Weekume bulungi obulamu bwo!",

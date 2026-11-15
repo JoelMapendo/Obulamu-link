@@ -307,7 +307,16 @@ export const UssdSimulator: React.FC = () => {
                 }}
                 className="px-3 py-1.5 rounded-lg text-xs font-bold bg-teal-100 text-teal-800 hover:bg-teal-200 transition"
               >
-                Change Language (Oluganda)
+                Change Language (4)
+              </button>
+              <button
+                onClick={() => {
+                  setInputBuffer('3');
+                  handleSendInput();
+                }}
+                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-800 hover:bg-emerald-200 transition"
+              >
+                Select Kiswahili (3)
               </button>
             </div>
           </div>

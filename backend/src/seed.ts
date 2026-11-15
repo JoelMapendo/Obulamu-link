@@ -60,6 +60,16 @@ async function main() {
     }
   });
 
+  const patientJuma = await prisma.user.create({
+    data: {
+      fullName: 'Juma Bakari',
+      phoneNumber: '+256752889900',
+      passwordHash: defaultPasswordHash,
+      role: 'PATIENT',
+      languagePref: 'SW'
+    }
+  });
+
   console.log('✅ Users seeded: Clinicians and Patients.');
 
   // 3. Seed Kampala Public Health Clinics & Bugema University Health Centre
@@ -182,6 +192,32 @@ async function main() {
         sentStatus: 'PENDING'
       }
     });
+    // Seed appointment for Juma Bakari (Swahili)
+    const app2 = await prisma.appointment.create({
+      data: {
+        bookingReference: 'OBL-1002',
+        patientId: patientJuma.id,
+        clinicId: clinicBugema.id,
+        slotId: todaySlot.id,
+        bookingChannel: 'ANDROID',
+        status: 'SCHEDULED',
+        notes: 'General OPD: Routine Blood Pressure Review'
+      }
+    });
+
+    await prisma.medicationReminder.create({
+      data: {
+        appointmentId: app2.id,
+        patientId: patientJuma.id,
+        medicationName: 'Amlodipine 5mg',
+        dosage: 'Kunywa kidonge 1 kila siku asubuhi (Take 1 tablet daily in morning)',
+        reminderDate: todayStr,
+        reminderTime: '08:00',
+        channel: 'SMS',
+        language: 'SW',
+        sentStatus: 'PENDING'
+      }
+    });
   }
 
   console.log('✅ Sample appointments and medication reminders seeded.');
@@ -189,8 +225,11 @@ async function main() {
   console.log('Demo Clinician Login:');
   console.log('  Phone:    +256772100100');
   console.log('  Password: Password123!');
-  console.log('Demo Patient Login:');
+  console.log('Demo Patient Login (Luganda):');
   console.log('  Phone:    +256701334455');
+  console.log('  Password: Password123!');
+  console.log('Demo Patient Login (Swahili):');
+  console.log('  Phone:    +256752889900');
   console.log('  Password: Password123!');
   console.log('------------------------------------------------------');
 }

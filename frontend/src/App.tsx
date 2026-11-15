@@ -6,6 +6,7 @@ import { UssdSimulator } from './components/UssdSimulator.js';
 import { SystemArchitectureModal } from './components/SystemArchitectureModal.js';
 import { ApiService } from './services/api.js';
 import { Clinic, User, Language } from './types/index.js';
+import { Stethoscope, Smartphone, PhoneCall, Layers, ShieldCheck } from 'lucide-react';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<'clinician' | 'patient' | 'ussd' | 'architecture'>('clinician');
@@ -24,7 +25,6 @@ export function App() {
         // Fetch Clinics
         let clinicList = await ApiService.getClinics().catch(() => []);
         if (clinicList.length === 0) {
-          // Fallback initial data if backend not yet running
           clinicList = [
             {
               id: 'c1',
@@ -72,7 +72,6 @@ export function App() {
           const authRes = await ApiService.login('+256772100100', 'Password123!');
           setCurrentUser(authRes.user);
         } catch {
-          // If login fails (e.g. backend just starting), set mock doctor
           setCurrentUser({
             id: 'demo-doc',
             fullName: 'Dr. Sarah Namubiru',
@@ -126,7 +125,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 font-sans">
+    <div className="min-h-screen flex flex-col bg-slate-100 text-slate-900 font-sans pb-mobile-nav md:pb-0">
       
       {/* Top Navbar */}
       <Navbar
@@ -136,14 +135,17 @@ export function App() {
         onSwitchUserRole={handleSwitchUserRole}
         lang={lang}
         setLang={setLang}
+        clinics={clinics}
+        selectedClinicId={selectedClinicId}
+        setSelectedClinicId={setSelectedClinicId}
       />
 
-      {/* Main View Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      {/* Main Full-Width Content Container */}
+      <main className="flex-1 w-full max-w-[1700px] mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-7">
         {loadingInitial ? (
-          <div className="py-24 text-center">
-            <div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-sm font-semibold text-slate-600">
+          <div className="py-32 text-center">
+            <div className="w-14 h-14 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <p className="text-sm font-bold text-slate-700">
               Connecting to Obulamu-Link Clinic Network...
             </p>
           </div>
@@ -176,16 +178,61 @@ export function App() {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-400">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      {/* NATIVE MOBILE BOTTOM NAVIGATION BAR (Shown only on small/mobile screens) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-t border-teal-850 px-2 py-1.5 shadow-2xl flex items-center justify-around">
+        <button
+          onClick={() => setActiveTab('clinician')}
+          className={`flex flex-col items-center py-1.5 px-3 rounded-xl transition-all ${
+            activeTab === 'clinician' ? 'text-teal-400 font-black' : 'text-slate-400'
+          }`}
+        >
+          <Stethoscope className="w-5 h-5 mb-0.5" />
+          <span className="text-[10px] tracking-tight">Clinician</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('patient')}
+          className={`flex flex-col items-center py-1.5 px-3 rounded-xl transition-all ${
+            activeTab === 'patient' ? 'text-indigo-400 font-black' : 'text-slate-400'
+          }`}
+        >
+          <Smartphone className="w-5 h-5 mb-0.5" />
+          <span className="text-[10px] tracking-tight">Book Visit</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('ussd')}
+          className={`flex flex-col items-center py-1.5 px-3 rounded-xl transition-all ${
+            activeTab === 'ussd' ? 'text-amber-400 font-black' : 'text-slate-400'
+          }`}
+        >
+          <PhoneCall className="w-5 h-5 mb-0.5" />
+          <span className="text-[10px] tracking-tight">USSD *284#</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('architecture')}
+          className={`flex flex-col items-center py-1.5 px-3 rounded-xl transition-all ${
+            activeTab === 'architecture' ? 'text-slate-200 font-black' : 'text-slate-400'
+          }`}
+        >
+          <Layers className="w-5 h-5 mb-0.5" />
+          <span className="text-[10px] tracking-tight">Specs</span>
+        </button>
+      </div>
+
+      {/* Desktop Footer */}
+      <footer className="hidden md:block bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-400 mt-auto">
+        <div className="max-w-[1700px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center space-x-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-            <span className="font-semibold text-slate-200">Obulamu-Link System</span>
+            <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping" />
+            <span className="font-bold text-slate-200">Obulamu-Link Platform</span>
             <span>— Kampala Public Health Clinics & Bugema University Health Centre</span>
           </div>
-          <div>
-            Dual-Channel USSD (*284#) & Android Scheduling Platform
+          <div className="flex items-center space-x-4">
+            <span>Dual-Channel USSD (*284#) & Android Scheduling</span>
+            <span>•</span>
+            <span className="text-teal-400 font-semibold">Africa's Talking SMS Synced</span>
           </div>
         </div>
       </footer>
@@ -195,4 +242,3 @@ export function App() {
 }
 
 export default App;
-

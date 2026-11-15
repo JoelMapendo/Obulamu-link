@@ -1,5 +1,5 @@
 export type Role = 'PATIENT' | 'CLINICIAN' | 'ADMIN';
-export type Language = 'EN' | 'LG';
+export type Language = 'EN' | 'LG' | 'SW';
 export type BookingChannel = 'ANDROID' | 'USSD' | 'WEB';
 export type AppointmentStatus = 'SCHEDULED' | 'COMPLETED' | 'CANCELLED' | 'NO_SHOW';
 

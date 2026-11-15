@@ -259,6 +259,8 @@ export class UssdService {
     let newLang: Language = 'EN';
     if (choice === '2') {
       newLang = 'LG';
+    } else if (choice === '3') {
+      newLang = 'SW';
     }
 
     await prisma.user.update({
